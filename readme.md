@@ -1,0 +1,31 @@
+SCADA (Supervisory control and data acquisition) is a system written in c/c++ language that is all about monitoring systems. 
+
+RTU's (Remote Terminal Unit) collect our data and will send messages when certain things need to be turned on and off. You will want some flexibility when it comes to your RTU, so make sure your input and outputs are 2x your needs, but no need to go overboard. The RTU will control relays based on analog inputs and  You want to relay as many relevant messages as you can.
+
+PLC's (programable Logic Controller) are programmed from scratch, that pretty much do the same thing as RTU's. RTU's usually come with certain programs, and can have updates installed if the server provides new versions.
+
+You should focus on the type of data communication your RTU does, and match a data protocol. Common formats to follow are DNP3, Modbus, and SNMP but there are others -some of which some manufacturers will try to trap you with. 
+
+DPSTele manufactures sensors that can be used to measure all kinds of things such as temperature, or vibrations. This is an example of non-equipment that can measure your systems when your equipment is too old or not complicated enough to handle this. But be careful when purchasing equipment and make sure it's going to work with what you have. 
+
+Everything is sent to an HMI (Human Machine Interface I.e what the users will deal with and see), but paying attention to how that information is sent (lane, serial, cellular, or via satellite?). When this data is properly received it can be sent as a text message, email, visual, or even voice messages. But be sure to take a good job of data basing, and having names that are easy for users to understand. 
+
+Rule of thumb, if there is a button or switch, you can rewire those into a relay and have the system (HMI sending message to RTU to sensors) to simulate you turning it on or off. 
+
+https://www.dpstele.com/network-monitoring/white-papers/index.php 
+
+__________________________________________
+
+lets now take a look at the pyramid of automation. (./automation_pyramid.png)
+
+Before reading just keep in mind some terms that might be confusing and non-conforming. I will be using "machine" for things we are trying to manipulate, such as monitoring a railway to see if a train has arrived at it's location, or sensors on the tracks to detect debris and switch course to prevent accidents. 
+
+The instruments will be our sensory, and technical equipment. Basically anything that interacts with or gives us information about our machines.
+
+The PLC and HMI layer receives and sends data but does not directly interact with our machine.
+
+SCADA is basically our Database on a server and is network based as opposed to PLC and HMI being based locally. Our SCADA layer will communicate with multiple PLC's (or RTU's) but require systems engineers to create a communication network that would be instantiated within the PLC's to ensure data was passed accordingly.  However the network will suffer larger strain because of the volume of data. SCADA can provide multiple HMI's, even for the machine's floor. Note that updates can cause re-centralization of data with a copy of our data in backup.
+
+MES (Manufacturing Execution Systems Layer) will track the amount of raw materials entering the plant and the outcome of produced items. These include subsystems of various types. OEE (Overall Equipment Effectiveness) check the overall reliability of equipment on our machine, and is a crucial manufacturing metric that will give management information about production rates.
+
+ERP - https://www.solisplc.com/scada
